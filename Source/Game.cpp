@@ -5,8 +5,10 @@
 #include <SDL_image.h>
 
 CGame::CGame(){
+	estado=ESTADO_INICIANDO;
+
 	atexit(SDL_Quit);
-	int estado = 0;				//este es un OR Binario sirve como un switch de dispositivos --->  | 
+//	int estado = 0;				//este es un OR Binario sirve como un switch de dispositivos --->  | 
 	//SDL_Surface * screen;
 	
 
@@ -74,23 +76,30 @@ bool CGame::Start()
 				destino.w=100;
 				destino.h=100;
 
-				SDL_BlitSurface(nave, &fuente, screen, &destino);
+				SDL_BlitSurface(nave, &fuente, screen, &destino );
+				SDL_BlitSurface(nave, NULL, screen, NULL);
 				SDL_BlitSurface(nave, NULL,screen,NULL);
 
 				SDL_FreeSurface(nave);
+				
 			}
-				break;
+			break;
+				
 		case Estado::ESTADO_MENU:
 				break;
 		case	Estado::ESTADO_JUGANDO:
-				break;
+				
 		case Estado::ESTADO_TERMINANDO:
 				break;
 		case Estado::ESTADO_FINALIZANDO:
+				
 			break;
+			}						
 
-		}
+		
 			SDL_Flip(screen);
-    }	
+
+    }	salirJuego=true;
 	return true;
+	
 };
