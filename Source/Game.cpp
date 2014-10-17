@@ -11,22 +11,39 @@ CGame::CGame(){
 //	int estado = 0;				//este es un OR Binario sirve como un switch de dispositivos --->  | 
 	//SDL_Surface * screen;
 	
+	//ACT3: Este codigo no va aqui.
+	//if (SDL_Init(SDL_INIT_VIDEO)<0)
+	//{
+	//	printf("Error: %s", SDL_GetError());
+	//	exit(EXIT_FAILURE);
+	//}
 
-	if (SDL_Init(SDL_INIT_VIDEO)<0)
-	{
+	//screen=SDL_SetVideoMode(640,480,24, SDL_HWACCEL );
+
+	//if (screen == NULL)
+	
+	//{
+	//	printf("Error: %s", SDL_GetError());
+	//	exit(EXIT_FAILURE);
+	//}
+	//SDL_Flip(screen);
+	//SDL_WM_SetCaption("Mi primer juego", NULL);
+}
+
+//ACT3: Mal, falto este metodo.
+void CGame::Iniciando(){
+	if (SDL_Init(SDL_INIT_VIDEO)<0){
 		printf("Error: %s", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
 
 	screen=SDL_SetVideoMode(640,480,24, SDL_HWACCEL );
 
-	if (screen == NULL)
-	
-	{
+	if (screen == NULL){
 		printf("Error: %s", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
-	SDL_Flip(screen);
+	
 	SDL_WM_SetCaption("Mi primer juego", NULL);
 }
 // Con esta función eliminaremos todos los elementos en pantalla
@@ -34,20 +51,21 @@ void CGame::Finalize()
 {
 	SDL_Quit();
 		
-	if (SDL_Init( SDL_INIT_AUDIO )){
-		printf("Error %s ", SDL_GetError());
-		exit(EXIT_FAILURE);
-		}
+	//ACT3: Mal este codigo no va aqui
+	//if (SDL_Init( SDL_INIT_AUDIO )){
+	//	printf("Error %s ", SDL_GetError());
+	//	exit(EXIT_FAILURE);
+	//	}
 		
-		screen = SDL_SetVideoMode( 640, 480, 24, SDL_SWSURFACE );
-		if (screen == NULL)
-		{
-			printf("Error %s ", SDL_GetError());
-			exit(EXIT_FAILURE);
+	//	screen = SDL_SetVideoMode( 640, 480, 24, SDL_SWSURFACE );
+	//	if (screen == NULL)
+	///	{
+	//		printf("Error %s ", SDL_GetError());
+	//		exit(EXIT_FAILURE);
 
-		}
-			SDL_WM_SetCaption( "Mi primer Juego", NULL );
-			SDL_Flip(screen);
+	//	}
+	//		SDL_WM_SetCaption( "Mi primer Juego", NULL );
+	//		SDL_Flip(screen);
 }
 
 bool CGame::Start()
@@ -62,6 +80,11 @@ bool CGame::Start()
 		switch (estado)
 		{
 		case Estado::ESTADO_INICIANDO:
+			Iniciando();//ACT3: Mal, falto llamar el metodo "iniciando()"
+			estado=ESTADO_MENU;
+			break;
+				
+		case Estado::ESTADO_MENU:
 			{
 				nave = SDL_LoadBMP("../Data/MiNave.bmp");
 
@@ -83,9 +106,6 @@ bool CGame::Start()
 				SDL_FreeSurface(nave);
 				
 			}
-			break;
-				
-		case Estado::ESTADO_MENU:
 				break;
 		case	Estado::ESTADO_JUGANDO:
 				
