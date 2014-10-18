@@ -3,6 +3,7 @@
 #include "Game.h"
 #include <SDL.h>
 #include <SDL_image.h>
+#include "config.h"
 
 CGame::CGame(){
 	estado=ESTADO_INICIANDO;
@@ -13,6 +14,7 @@ CGame::CGame(){
 	
 
 	if (SDL_Init(SDL_INIT_VIDEO)<0)
+	
 	{
 		printf("Error: %s", SDL_GetError());
 		exit(EXIT_FAILURE);
@@ -27,19 +29,24 @@ CGame::CGame(){
 		exit(EXIT_FAILURE);
 	}
 	SDL_Flip(screen);
-	SDL_WM_SetCaption("Mi primer juego", NULL);
+	SDL_WM_SetCaption("Mi primer Juego", NULL);
 }
 // Con esta función eliminaremos todos los elementos en pantalla
 void CGame::Finalize()
 {
 	SDL_Quit();
 		
-	if (SDL_Init( SDL_INIT_AUDIO )){
+	if (SDL_Init( SDL_INIT_VIDEO)){
 		printf("Error %s ", SDL_GetError());
 		exit(EXIT_FAILURE);
 		}
 		
-		screen = SDL_SetVideoMode( 640, 480, 24, SDL_SWSURFACE );
+	screen = SDL_SetVideoMode( _HEIGHT_SCREEN_, _WIDTH_SCREEN_, 24, SDL_SWSURFACE );//original
+			//screen=SDL_SetVideoMode (480, 640, 24, SDL_HWSURFACE);
+			//screen=SDL_SetVideoMode (640, 480, 32, SDL_HWSURFACE);
+			//screen=SDL_SetVideoMode (1024, 100,24, SDL_HWSURFACE);
+			//screen=SDL_SetVideoMode (640, 480, 24, SDL_SWSURFACE);
+			//screen=SDL_SetVideoMode (640, 480, 15, SDL_HWSURFACE);
 		if (screen == NULL)
 		{
 			printf("Error %s ", SDL_GetError());
@@ -47,6 +54,8 @@ void CGame::Finalize()
 
 		}
 			SDL_WM_SetCaption( "Mi primer Juego", NULL );
+
+			nave = new Nave (screen,"../Data/Minave.bmp");
 			SDL_Flip(screen);
 }
 
@@ -62,10 +71,10 @@ bool CGame::Start()
 		switch (estado)
 		{
 		case Estado::ESTADO_INICIANDO:
-			{
-				nave = SDL_LoadBMP("../Data/MiNave.bmp");
+			//{
+				//nave = SDL_LoadBMP("../Data/MiNave.bmp");
 
-				SDL_Rect fuente;
+				/*SDL_Rect fuente;
 				fuente.x=90;
 				fuente.y=152;
 				fuente.w=242;
@@ -82,10 +91,18 @@ bool CGame::Start()
 
 				SDL_FreeSurface(nave);
 				
-			}
+			}*/
 			break;
 				
 		case Estado::ESTADO_MENU:
+			//nave->Pintar();
+			SDL_FillRect(screen, NULL, 0x000000);
+			keys=SDL_GetKeyState(NULL);
+			if(keys[SDLK_RIGHT])
+			{
+				nave->Mover(1);
+			}
+			nave->Pintar();
 				break;
 		case	Estado::ESTADO_JUGANDO:
 				
