@@ -159,7 +159,7 @@ bool CGame::Start()
 				nave->Mover(1);
 			}
 			nave->Pintar();
-
+=======
 			}
 >>>>>>> origin/master
 				break;
