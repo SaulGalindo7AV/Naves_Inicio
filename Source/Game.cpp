@@ -56,6 +56,9 @@ void CGame::Iniciando(){
 =======
 	
 	SDL_WM_SetCaption("Mi primer juego", NULL);
+	atexit(SDL_QUIT);
+	nave = new Sprite(screen);
+	nave->CargarImagen("../MiNave.Bmp");
 >>>>>>> origin/master
 }
 // Con esta función eliminaremos todos los elementos en pantalla
@@ -116,12 +119,14 @@ bool CGame::Start()
 		switch (estado)
 		{
 		case Estado::ESTADO_INICIANDO:
+			printf("prueba \n");
 <<<<<<< HEAD
 			//{
 				//nave = SDL_LoadBMP("../Data/MiNave.bmp");
 =======
 			Iniciando();//ACT3: Mal, falto llamar el metodo "iniciando()"
 			estado=ESTADO_MENU;
+			//nave->PintarModulo(SPRITE_MODULE_MI_NAVE,100,100);
 			break;
 				
 		case Estado::ESTADO_MENU:

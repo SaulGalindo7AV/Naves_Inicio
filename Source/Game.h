@@ -26,6 +26,5 @@ private:
 	SDL_Surface * screen;
 	Sprite * nave;
 	Estado estado;
-
 };
 

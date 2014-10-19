@@ -7,13 +7,19 @@ Sprite::~Sprite()
 	SDL_FreeSurface(image);
 }
 
-void Sprite::PintarModulo(int id, int x, int y )
+void Sprite:: CargarImagen(char * ruta)
+{
+	image = SDL_LoadBMP(ruta)
+}
+
+
+void Sprite::PintarModulo(int nombre, int x, int y )
 {
 	SDL_Rect src;
-	src.x = spriteDef.modulos[id].x;
-	src.x = spriteDef.modulos[id].y;
-	src.x = spriteDef.modulos[id].w;
-	src.x = spriteDef.modulos[id].h;
+	src.x = spriteDef.modulos[nombre].x;
+	src.x = spriteDef.modulos[nombre].y;
+	src.x = spriteDef.modulos[nombre].w;
+	src.x = spriteDef.modulos[nombre].h;
 	SDL_Rect dest;
 	dest.x = x;
 	dest.y= y;
