@@ -23,6 +23,7 @@ public:
 
 private:
 	void Iniciando();
+	bool esLimitePantalla(nave * objeto, int bandera );
 	SDL_Surface * screen;
 	Sprite * nave;
 	Estado estado;

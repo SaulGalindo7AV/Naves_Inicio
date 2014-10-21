@@ -159,15 +159,15 @@ bool CGame::Start()
 			//nave->Pintar();
 			SDL_FillRect(screen, NULL, 0x000000);
 			keys=SDL_GetKeyState(NULL);
-			if(keys[SDLK_RIGHT])
+			if(keys[SDLK_RIGHT] && !esLimitePantalla(nave, BORDE_DERECHO | BORDE_SUPERIOR))
 			{
 				nave->Mover(1);
 			}
 			nave->Pintar();
-=======
+			=======		break;
 			}
 >>>>>>> origin/master
-				break;
+			
 		case	Estado::ESTADO_JUGANDO:
 				
 		case Estado::ESTADO_TERMINANDO:
@@ -183,4 +183,21 @@ bool CGame::Start()
     }	salirJuego=true;
 	return true;
 	
-};
+}
+bool CGame::esLimitePantalla(nave *objeto, int bandera)
+{
+	if(bandera & BORDE_IZQUIERDO)
+		if (objeto->obtenerX() <=0)
+			return true;
+	if(bandera & BORDE_SUPERIOR)
+		if (objeto->obtenerY() <=0)
+			return true;
+	if(bandera & BORDE_DERECHO)
+		if (objeto->obtenerX() >= (_WIDTH_SCREEN_-objeto->obtenerW()))
+			return true;
+	if(bandera & BORDER_INFERIOR)
+		if (objeto->obtenerY() >=(_HEIGHT_SCREEN_-objeto->obtenerH()))
+			return true;
+	return false;
+
+}

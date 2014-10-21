@@ -6,8 +6,10 @@ Nave::Nave(SDL_Surface * screen, char * rutaImagen)
 {
 	sprite = new Sprite(screen);
 	sprite->CargarImagen(rutaImagen);
-	x=(_WIDTH_SCREEN_/2)-(sprite->WidthModule(0)/2);
-	y=(_HEIGHT_SCREEN_-80)-sprite->HeightModule(0));
+	w=sprite->WidthModule(0);
+	h=sprite->HeightModule(0);
+	x=(_WIDTH_SCREEN_/2)-(w/2);
+	y=(_HEIGHT_SCREEN_-80)-(h);
 }
 
 Nave::~Nave()
@@ -22,4 +24,16 @@ void Nave::Pintar()
 void Nave::Mover(int posicion)
 {
 	x += posicion;
+}
+int Nave::obtenerX()
+{
+	return x;
+}
+int Nave::obtenerY()
+{
+	return y;
+}
+int Nave::obtenerW()
+{
+	return w;
 }
