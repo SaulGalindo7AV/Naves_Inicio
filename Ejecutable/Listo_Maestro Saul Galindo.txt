@@ -1,5 +1,7 @@
 
+Corte 1:
 
 Actividad 1: 6, Tarde, Ademas el archivo deberia llamarse Readme.txt
 Actividad 2: 9, Tarde.
 Actividad 3: 7, Falto crear el metodo "iniciando()", tenias codigo de mas en finalize, te falto mandar a llamar el metodo "iniciando()".
+Examen 1: 2 No imprime la informacion que pedi, solo llegar al 2do estado.
